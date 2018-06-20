@@ -28,7 +28,6 @@ func Consumer() {
 	err = c.SubscribeTopics(topic, nil)
 
 	run := true
-	//todo
 	for run == true {
 		select {
 		case sig := <-sigchan:
