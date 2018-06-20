@@ -49,7 +49,7 @@ func init() {
 	}
 
 	fmt.Printf("Created Producer %v", p)
-
+	//todo
 	go func() {
 		fmt.Printf("routine start!")
 		for e := range p.Events() {
