@@ -4,15 +4,17 @@ import (
 	"bytes"
 	"fmt"
 	"os/exec"
+	"strconv"
 )
 
-func Compiler(name string, arg ...string) string {
-	proc := exec.Command(name, arg...)
+func Compiler(submission Submission) string {
+	proc := exec.Command("g++-8","../user_code/"+strconv.Itoa(submission.Id)+".cpp","-o","../user_code/"+strconv.Itoa(submission.Id),"-O2")
 	var out bytes.Buffer
 	proc.Stdout = &out
 	err := proc.Run()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(err.Error())
+		return out.String()
 	}
 	return out.String()
 }

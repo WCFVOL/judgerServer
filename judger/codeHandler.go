@@ -23,5 +23,5 @@ func Handler(str string) {
 	log.Println(str)
 	log.Print(submission)
 	WriteCode(submission) // 根据submissionId将代码写入相应文件
-
+	Compiler(submission)
 }
