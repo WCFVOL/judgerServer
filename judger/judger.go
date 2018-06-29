@@ -40,7 +40,7 @@ func Judger(maxCpuTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize,
 	for _, v := range args {
 		strenv += v + " "
 	}
-	proc := exec.Command("/root/Judger-newnew/Judger-newnew/output/libjudger.so", "--max_cpu_time="+strconv.Itoa(maxCpuTime),
+	proc := exec.Command("/usr/lib/judger/libjudger.so", "--max_cpu_time="+strconv.Itoa(maxCpuTime),
 		"--max_real_time="+strconv.Itoa(maxRealTime),
 		"--max_memory="+strconv.Itoa(maxMemory),
 		"--max_stack="+strconv.Itoa(maxStack),
