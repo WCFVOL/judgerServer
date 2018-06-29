@@ -3,6 +3,7 @@ package judger
 import (
 	"encoding/json"
 	"log"
+	"strconv"
 )
 
 type Submission struct {
@@ -23,5 +24,13 @@ func Handler(str string) {
 	log.Println(str)
 	log.Print(submission)
 	WriteCode(submission) // 根据submissionId将代码写入相应文件
-	Compiler(submission)
+	compilerResult:=Compiler(submission)
+	if compilerResult == "error" {
+		//TODO compiler error
+		return
+	}
+	judgeResult := Judger(1000, 2000, 128*1024*1024, 200, 10000, 32*1024*1024, 0, 0, 0,
+		"../user_code/"+strconv.Itoa(submission.Id), strconv.Itoa(submission.ProblemId)+".in", "../user_code/"+strconv.Itoa(submission.Id)+".out", "echo.out", "judger.log", "c_cpp",
+		[]string{""}, []string{"foo=bar"})
+	log.Println(judgeResult)
 }
