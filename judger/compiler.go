@@ -14,7 +14,7 @@ func Compiler(submission Submission) string {
 	err := proc.Run()
 	if err != nil {
 		fmt.Println(err.Error())
-		return out.String()
+		return "error"
 	}
-	return out.String()
+	return "ok"
 }
