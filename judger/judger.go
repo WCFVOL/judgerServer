@@ -1,10 +1,10 @@
 package judger
 
 import (
-	"os/exec"
-	"fmt"
-	"strconv"
 	"bytes"
+	"fmt"
+	"os/exec"
+	"strconv"
 )
 
 var (
@@ -32,34 +32,34 @@ var (
 func Judger(maxCpuTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize, maxStack, gid, uid, memoryLimitCheckOnly int,
 	exePath, inputPath, outputPath, errorPath, logPath, seccompRuleName string,
 	args, env []string) string {
-	tmp:="--args="
-	for _,v:=range args {
-		tmp+=v+" "
+	tmp := "--args="
+	for _, v := range args {
+		tmp += v + " "
 	}
-	strenv:="--env="
-	for _,v:=range args {
-		strenv+=v+" "
+	strenv := "--env="
+	for _, v := range args {
+		strenv += v + " "
 	}
-	proc := exec.Command("/root/Judger-newnew/Judger-newnew/output/libjudger.so","--max_cpu_time=" + strconv.Itoa(maxCpuTime),
-		"--max_real_time=" + strconv.Itoa(maxRealTime),
-		"--max_memory=" + strconv.Itoa(maxMemory) ,
-		"--max_stack=" + strconv.Itoa(maxStack) ,
-		"--max_output_size=" + strconv.Itoa(maxOutputSize) ,
-		"--max_process_number=" + strconv.Itoa(maxProcessNumber) ,
-		"--exe_path=" + string(exePath) ,
-		"--input_path=" + string(inputPath) ,
-		"--output_path=" + string(outputPath) ,
-		"--error_path=" + string(errorPath) ,
-		"--log_path=" + string(logPath) ,
-		"--seccomp_rule_name=" + string(seccompRuleName) ,
-		"--uid=" + strconv.Itoa(uid) ,
-		"--gid=" + strconv.Itoa(gid) ,
-		"--memory_limit_check_only=" + strconv.Itoa(memoryLimitCheckOnly),tmp,strenv,
+	proc := exec.Command("/root/Judger-newnew/Judger-newnew/output/libjudger.so", "--max_cpu_time="+strconv.Itoa(maxCpuTime),
+		"--max_real_time="+strconv.Itoa(maxRealTime),
+		"--max_memory="+strconv.Itoa(maxMemory),
+		"--max_stack="+strconv.Itoa(maxStack),
+		"--max_output_size="+strconv.Itoa(maxOutputSize),
+		"--max_process_number="+strconv.Itoa(maxProcessNumber),
+		"--exe_path="+string(exePath),
+		"--input_path="+string(inputPath),
+		"--output_path="+string(outputPath),
+		"--error_path="+string(errorPath),
+		"--log_path="+string(logPath),
+		"--seccomp_rule_name="+string(seccompRuleName),
+		"--uid="+strconv.Itoa(uid),
+		"--gid="+strconv.Itoa(gid),
+		"--memory_limit_check_only="+strconv.Itoa(memoryLimitCheckOnly), tmp, strenv,
 	)
 	var out bytes.Buffer
 	proc.Stdout = &out
-	err:=proc.Run()
-	if err!=nil {
+	err := proc.Run()
+	if err != nil {
 		fmt.Println(err)
 	}
 	return out.String()

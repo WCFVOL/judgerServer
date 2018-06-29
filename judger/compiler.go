@@ -7,11 +7,11 @@ import (
 )
 
 func Compiler(name string, arg ...string) string {
-	proc:=exec.Command(name,arg...)
+	proc := exec.Command(name, arg...)
 	var out bytes.Buffer
 	proc.Stdout = &out
-	err:=proc.Run()
-	if err!=nil {
+	err := proc.Run()
+	if err != nil {
 		fmt.Println(err)
 	}
 	return out.String()

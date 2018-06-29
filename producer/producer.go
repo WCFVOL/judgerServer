@@ -1,9 +1,9 @@
 package producer
 
 import (
+	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"os"
-	"fmt"
 )
 
 var p *kafka.Producer

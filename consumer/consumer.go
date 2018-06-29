@@ -1,5 +1,7 @@
 package consumer
+
 import (
+	"awesomeProject/judgerServer/judger"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"os"
@@ -24,7 +26,7 @@ func Consumer() {
 	}
 
 	fmt.Printf("Created Consumer %v\n", c)
-	topic:= []string{"test"}
+	topic := []string{"test"}
 	err = c.SubscribeTopics(topic, nil)
 
 	run := true
@@ -43,6 +45,7 @@ func Consumer() {
 			case *kafka.Message:
 				fmt.Printf("%% Message on %s:\n%s\n",
 					e.TopicPartition, string(e.Value))
+				judger.Handler(string(e.Value))
 				if e.Headers != nil {
 					fmt.Printf("%% Headers: %v\n", e.Headers)
 				}
