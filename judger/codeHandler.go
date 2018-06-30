@@ -30,7 +30,7 @@ func Handler(str string) {
 		return
 	}
 	judgeResult := Judger(1000, 2000, 128*1024*1024, 200, 10000, 32*1024*1024, 0, 0, 0,
-		"/root/user_result/"+strconv.Itoa(submission.Id), strconv.Itoa(submission.ProblemId)+".in", "/root/user_result/"+strconv.Itoa(submission.Id)+".out", "/root/user_result/echo.out", "judger.log", "c_cpp",
+		"user_code/"+strconv.Itoa(submission.Id), "/root/problem_in/"+strconv.Itoa(submission.ProblemId)+".in", "/root/user_result/"+strconv.Itoa(submission.Id)+".out", "/root/user_result/echo.out", "judger.log", "c_cpp",
 		[]string{""}, []string{"foo=bar"})
 	log.Println(judgeResult)
 }
