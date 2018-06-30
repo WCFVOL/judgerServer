@@ -45,6 +45,8 @@ func Handler(str string) {
 	if output == stdout {
 		fmt.Println("AC")
 	} else {
+		fmt.Println(output)
+		fmt.Println(stdout)
 		fmt.Println("WRONG ANSWER")
 	}
 }
