@@ -1,10 +1,10 @@
 package main
 
 import (
-	_ "awesomeProject/judgerServer/consumer"
 	"awesomeProject/judgerServer/consumer"
+	_ "awesomeProject/judgerServer/consumer"
 )
 
-func main()  {
+func main() {
 	consumer.Consumer()
 }
