@@ -37,7 +37,7 @@ func Handler(str string) {
 		[]string{""}, []string{"foo=bar"})
 	log.Println(judgeResult)
 	outputByte, err := ioutil.ReadFile("/root/user_result/" + strconv.Itoa(submission.Id) + ".out")
-	stdoutByte, err := ioutil.ReadFile("/root/std_result/" + strconv.Itoa(submission.Id) + ".out")
+	stdoutByte, err := ioutil.ReadFile("/root/std_result/" + strconv.Itoa(submission.ProblemId) + ".out")
 	output := string(outputByte)
 	stdout := string(stdoutByte)
 	output = strings.Replace(output, "\r", "", -1)
