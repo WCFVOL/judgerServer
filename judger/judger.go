@@ -15,6 +15,7 @@ var (
 	RESULT_MEMORY_LIMIT_EXCEEDED    = 3
 	RESULT_RUNTIME_ERROR            = 4
 	RESULT_SYSTEM_ERROR             = 5
+	COMPILER_ERROR					= 6
 
 	ERROR_INVALID_CONFIG      = -1
 	ERROR_FORK_FAILED         = -2
@@ -31,7 +32,7 @@ var (
 
 func Judger(maxCpuTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize, maxStack, gid, uid, memoryLimitCheckOnly int,
 	exePath, inputPath, outputPath, errorPath, logPath, seccompRuleName string,
-	args, env []string) string {
+	args, env []string) []byte {
 	tmp := "--args="
 	for _, v := range args {
 		tmp += v + " "
@@ -62,5 +63,5 @@ func Judger(maxCpuTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize,
 	if err != nil {
 		fmt.Println(err)
 	}
-	return out.String()
+	return out.Bytes()
 }
