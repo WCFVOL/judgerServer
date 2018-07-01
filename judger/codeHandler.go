@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"strconv"
-	"strings"
+	"crypto/md5"
 )
 
 type Submission struct {
@@ -38,10 +38,13 @@ func Handler(str string) {
 	log.Println(judgeResult)
 	outputByte, err := ioutil.ReadFile("/root/user_result/" + strconv.Itoa(submission.Id) + ".out")
 	stdoutByte, err := ioutil.ReadFile("/root/std_result/" + strconv.Itoa(submission.ProblemId) + ".out")
-	output := string(outputByte)
-	stdout := string(stdoutByte)
-	output = strings.Replace(output, "\r", "", -1)
-	stdout = strings.Replace(stdout, "\r", "", -1)
+
+	md5 := md5.New()
+	md5.Write(outputByte)
+	output := string(md5.Sum(nil))
+	md5.Reset()
+	md5.Write(stdoutByte)
+	stdout := string(md5.Sum(nil))
 	if output == stdout {
 		fmt.Println("AC")
 	} else {
