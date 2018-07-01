@@ -29,7 +29,7 @@ func Send(res Result,id, length int) {
 	seJson := sendJson{id,length,res.Memory,res.Cpu_time,res.Result}
 	sendStr,_ := json.Marshal(seJson)
 	fmt.Println(string(sendStr))
-	resp, err := http.Post("http://localhost:8080/admin/set_result",
+	resp, err := http.Post("123.235.209.242:8080/admin/set_result",
 		"application/json",
 		strings.NewReader(string(sendStr)))
 	if err != nil {
