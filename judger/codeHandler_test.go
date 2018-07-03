@@ -1,8 +1,23 @@
 package judger
 
-import "testing"
+import (
+	"testing"
+	"awesomeProject/judgerServer/result"
+	"encoding/json"
+	"fmt"
+)
 
 func TestHandler(t *testing.T) {
-	str := `{"date":1530115200000,"code":"123","language":1,"id":4,"problemId":1,"userId":1}`
-	Handler(str)
+	str := `{
+    "cpu_time": 0,
+    "real_time": 2,
+    "memory": 3145728,
+    "signal": 0,
+    "exit_code": 0,
+    "error": 0,
+    "result": 0
+}`
+var res result.Result
+json.Unmarshal([]byte(str),&res)
+	fmt.Println(res)
 }

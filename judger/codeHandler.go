@@ -41,7 +41,7 @@ func Handler(str string) {
 		"/root/user_code/"+strconv.Itoa(submission.Id), "/root/problem_in/"+strconv.Itoa(submission.ProblemId)+".in", "/root/user_result/"+strconv.Itoa(submission.Id)+".out", "/root/user_result/"+strconv.Itoa(submission.Id)+".error", "judger.log", "c_cpp",
 		[]string{""}, []string{"foo=bar"})
 	log.Println(string(judgeResult))
-	err = json.Unmarshal(judgeResult,res)
+	err = json.Unmarshal(judgeResult,&res)
 	if err!=nil {
 		log.Println(err.Error())
 	}
