@@ -23,21 +23,24 @@ func Handler(str string) {
 	if err != nil {
 		log.Println(err.Error())
 	}
+	var res result.Result
+	res.Result = 8
+	result.Send(res,submission.Id,0)
 	log.Println(str)
 	log.Print(submission)
 	WriteCode(submission) // 根据submissionId将代码写入相应文件
 	compilerResult := Compiler(submission)
 	if compilerResult == "error" {
-		//TODO compiler error
-		res := result.Result{6,0,0,0,10000,3,2}
+		res := result.Result{6,0,0,0,0,0,0}
 		result.Send(res,submission.Id,0)
 		return
 	}
+	res.Result = 9
+	result.Send(res,submission.Id,0)
 	judgeResult := Judger(1000, 2000, 128*1024*1024, 200, 10000, 32*1024*1024, 0, 0, 0,
 		"/root/user_code/"+strconv.Itoa(submission.Id), "/root/problem_in/"+strconv.Itoa(submission.ProblemId)+".in", "/root/user_result/"+strconv.Itoa(submission.Id)+".out", "/root/user_result/"+strconv.Itoa(submission.Id)+".error", "judger.log", "c_cpp",
 		[]string{""}, []string{"foo=bar"})
 	log.Println(judgeResult)
-	var res result.Result
 	err = json.Unmarshal(judgeResult,res)
 	if err!=nil {
 		log.Println(err.Error())
