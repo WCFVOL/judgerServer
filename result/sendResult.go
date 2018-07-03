@@ -15,7 +15,7 @@ type Result struct {
 	Exit_code int
 	Signal int
 	Memory int
-	Read_time int
+	Real_time int
 	Cpu_time int
 }
 type sendJson struct {
