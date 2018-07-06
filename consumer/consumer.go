@@ -1,14 +1,21 @@
 package consumer
 
 import (
-	"awesomeProject/judgerServer/judger"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"os"
 	"os/signal"
 	"syscall"
+	"encoding/json"
+	"log"
+	"awesomeProject/judgerServer/judger"
+	"awesomeProject/judgerServer/problem"
 )
 
+type Task struct {
+	TaskId int
+	Data   string
+}
 func Consumer() {
 
 	sigchan := make(chan os.Signal, 1)
@@ -30,6 +37,7 @@ func Consumer() {
 	err = c.SubscribeTopics(topic, nil)
 
 	run := true
+	var task Task
 	for run == true {
 		select {
 		case sig := <-sigchan:
@@ -45,7 +53,17 @@ func Consumer() {
 			case *kafka.Message:
 				fmt.Printf("%% Message on %s:\n%s\n",
 					e.TopicPartition, string(e.Value))
-				go judger.Handler(string(e.Value))
+				err := json.Unmarshal(e.Value, &task)
+				if err != nil {
+					log.Println(err.Error())
+				}
+				if task.TaskId == 1 {
+					go judger.Handler(task.Data)
+				} else if task.TaskId == 2 {
+					go problem.AddInputOutput(task.Data)
+				} else if task.TaskId == 3 {
+					// TODO SPJ
+				}
 				if e.Headers != nil {
 					fmt.Printf("%% Headers: %v\n", e.Headers)
 				}
