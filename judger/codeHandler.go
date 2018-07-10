@@ -12,7 +12,7 @@ import (
 type Submission struct {
 	Id        int
 	Code      string
-	UserId    int
+	Username    string
 	Date      int64
 	ProblemId int
 	Language  int
