@@ -15,7 +15,7 @@ var (
 	RESULT_MEMORY_LIMIT_EXCEEDED    = 3
 	RESULT_RUNTIME_ERROR            = 4
 	RESULT_SYSTEM_ERROR             = 5
-	COMPILER_ERROR					= 6
+	COMPILER_ERROR                  = 6
 
 	ERROR_INVALID_CONFIG      = -1
 	ERROR_FORK_FAILED         = -2

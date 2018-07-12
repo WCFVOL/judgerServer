@@ -1,10 +1,10 @@
 package judger
 
 import (
-	"testing"
 	"awesomeProject/judgerServer/result"
 	"encoding/json"
 	"fmt"
+	"testing"
 )
 
 func TestHandler(t *testing.T) {
@@ -17,7 +17,7 @@ func TestHandler(t *testing.T) {
     "error": 0,
     "result": 0
 }`
-var res result.Result
-json.Unmarshal([]byte(str),&res)
+	var res result.Result
+	json.Unmarshal([]byte(str), &res)
 	fmt.Println(res)
 }

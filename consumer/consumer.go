@@ -1,21 +1,22 @@
 package consumer
 
 import (
+	"awesomeProject/judgerServer/judger"
+	"awesomeProject/judgerServer/problem"
+	"encoding/json"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
-	"encoding/json"
-	"log"
-	"awesomeProject/judgerServer/judger"
-	"awesomeProject/judgerServer/problem"
 )
 
 type Task struct {
 	TaskId int
 	Data   string
 }
+
 func Consumer() {
 
 	sigchan := make(chan os.Signal, 1)

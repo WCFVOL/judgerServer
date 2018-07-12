@@ -1,35 +1,36 @@
 package result
 
 import (
-	"net/http"
-	"strings"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"encoding/json"
+	"net/http"
+	"strings"
 )
 
 type Result struct {
-	Result int
-	Error int
+	Result    int
+	Error     int
 	Exit_code int
-	Signal int
-	Memory int
+	Signal    int
+	Memory    int
 	Real_time int
-	Cpu_time int
+	Cpu_time  int
 }
 type sendJson struct {
-	Id int
+	Id     int
 	Length int
 	Memory int
-	Time int
+	Time   int
 	Result int
 }
-func Send(res Result,id, length int) {
-	seJson := sendJson{id,length,res.Memory,res.Cpu_time,res.Result}
-	sendStr,_ := json.Marshal(seJson)
+
+func Send(res Result, id, length int) {
+	seJson := sendJson{id, length, res.Memory, res.Cpu_time, res.Result}
+	sendStr, _ := json.Marshal(seJson)
 	fmt.Println(string(sendStr))
-	req, err := http.NewRequest("POST","http://localhost:8080/admin/set_result",
+	req, err := http.NewRequest("POST", "http://localhost:8080/admin/set_result",
 		strings.NewReader(string(sendStr)))
 	req.Header.Set("Content-Type", "application/json; encoding=utf-8")
 	req.Header.Set("token", "isAdmin")
