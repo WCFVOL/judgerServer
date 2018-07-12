@@ -55,7 +55,7 @@ func Handler(str string) {
 			return
 		}
 		outputByte, _ := ioutil.ReadFile("/root/user_result/" + strconv.Itoa(submission.Id) + ".out")
-		stdoutByte, _ := ioutil.ReadFile("/root/std_result/" + strconv.Itoa(submission.ProblemId) + ".out")
+		stdoutByte, _ := ioutil.ReadFile("/root/std_result/" + strconv.Itoa(submission.ProblemId) + "/" + strconv.Itoa(i) + ".out")
 
 		md5 := md5.New()
 		md5.Write(outputByte)
