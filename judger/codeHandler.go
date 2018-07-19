@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"strconv"
+	"fmt"
 )
 
 type Submission struct {
@@ -42,6 +43,7 @@ func Handler(str string) {
 	res.Result = 9
 	result.Send(res, submission.Id, 0)
 	for i := 0; i < submission.TestCase%10000; i++ {
+		fmt.Println(submission.TestCase)
 		judgeResult := Judger(submission.TimeLimit, submission.TimeLimit*2, submission.MemLimit*1024*1024, 200, 10000, 32*1024*1024, 0, 0, 0,
 			"/root/user_code/"+strconv.Itoa(submission.Id), "/root/problem_in/"+strconv.Itoa(submission.ProblemId)+"/"+strconv.Itoa(i)+".in", "/root/user_result/"+strconv.Itoa(submission.Id)+".out", "/root/user_result/"+strconv.Itoa(submission.Id)+".error", "judger.log", "c_cpp",
 			[]string{""}, []string{"foo=bar"})
