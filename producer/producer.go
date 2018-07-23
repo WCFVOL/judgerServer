@@ -25,23 +25,11 @@ type ProducerConf struct {
 
 func init() {
 
-	// 导入配置文件
-	// pwd, _ := os.Getwd()
-	// println(pwd)
-	// pos := len(pwd)
-	// length := len("iov-gateway-wstdp-mediators")
-	// for pwd[pos-length:pos] != "iov-gateway-wstdp-mediators" {
-	// 	pos--
-	// }
-	// date, _ := ioutil.ReadFile(pwd[:pos] + "/conf/outputConf/producerConf.yml")
 	conf := ServerConf{}
-	// yaml.Unmarshal(date, &conf)
-	// fmt.Println("kafkabootstrap: " + conf.Producer.Bootstrap)
 	conf.Producer.Bootstrap = "139.199.31.230:9092"
 	conf.Producer.Topic = "test"
 	topic = conf.Producer.Topic
 	p, err = kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": conf.Producer.Bootstrap})
-	// p, err = kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "192.168.56.101"})
 
 	if err != nil {
 		fmt.Printf("Failed to create producer.yml: %s", err)
