@@ -5,18 +5,21 @@ import (
 	"awesomeProject/judgerServer/problem"
 	"encoding/json"
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
+// Task judge task or SPJ or upload file
 type Task struct {
-	TaskId int
+	TaskID int
 	Data   string
 }
 
+// Consumer a consumer
 func Consumer() {
 
 	sigchan := make(chan os.Signal, 1)
@@ -58,11 +61,11 @@ func Consumer() {
 				if err != nil {
 					log.Println(err.Error())
 				}
-				if task.TaskId == 1 {
+				if task.TaskID == 1 {
 					go judger.Handler(task.Data)
-				} else if task.TaskId == 2 {
+				} else if task.TaskID == 2 {
 					go problem.AddInputOutput(task.Data)
-				} else if task.TaskId == 3 {
+				} else if task.TaskID == 3 {
 					// TODO SPJ
 				}
 				if e.Headers != nil {
