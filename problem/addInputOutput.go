@@ -2,9 +2,9 @@ package problem
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"strconv"
-	"fmt"
 )
 
 type AddFile struct {
@@ -28,8 +28,8 @@ func AddInputOutput(str string) {
 	//TODO
 	var addFile AddFile
 	fmt.Println(str)
-	err:=json.Unmarshal([]byte(str), &addFile)
-	if err!=nil {
+	err := json.Unmarshal([]byte(str), &addFile)
+	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(addFile)

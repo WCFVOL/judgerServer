@@ -1,9 +1,11 @@
 package main
 
 import (
-	"awesomeProject/judgerServer/consumer"
+	"awesomeProject/judgerServer/httpserver"
+	"awesomeProject/judgerServer/work"
 )
 
 func main() {
-	consumer.Consumer()
+	work.DoWork()
+	httpserver.Run("", "8080")
 }
