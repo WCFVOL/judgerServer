@@ -46,7 +46,11 @@ func Handler(str string) {
 	for i := 0; i < submission.TestCase%10000; i++ {
 		log.Println(submission.TestCase)
 		judgeResult := Judger(submission.TimeLimit, submission.TimeLimit*2, submission.MemLimit*1024*1024, 200, 10000, 32*1024*1024, 0, 0, 0,
-			"/root/user_code/"+strconv.Itoa(submission.Id), "/root/problem_in/"+strconv.Itoa(submission.ProblemId)+"/"+strconv.Itoa(i)+".in", "/root/user_result/"+strconv.Itoa(submission.Id)+".out", "/root/user_result/"+strconv.Itoa(submission.Id)+".error", "judger.log", "c_cpp",
+			"user_code/"+strconv.Itoa(submission.Id),
+			"problem_in/"+strconv.Itoa(submission.ProblemId)+"/"+strconv.Itoa(i)+".in",
+			"user_result/"+strconv.Itoa(submission.Id)+".out",
+			"user_result/"+strconv.Itoa(submission.Id)+".error",
+			"judger.log", "c_cpp",
 			[]string{""}, []string{"foo=bar"})
 		log.Println(string(judgeResult))
 		err = json.Unmarshal(judgeResult, &res)
@@ -57,8 +61,8 @@ func Handler(str string) {
 			result.Send(res, submission.Id, 0)
 			return
 		}
-		outputByte, _ := ioutil.ReadFile("/root/user_result/" + strconv.Itoa(submission.Id) + ".out")
-		stdoutByte, _ := ioutil.ReadFile("/root/std_result/" + strconv.Itoa(submission.ProblemId) + "/" + strconv.Itoa(i) + ".out")
+		outputByte, _ := ioutil.ReadFile("user_result/" + strconv.Itoa(submission.Id) + ".out")
+		stdoutByte, _ := ioutil.ReadFile("std_result/" + strconv.Itoa(submission.ProblemId) + "/" + strconv.Itoa(i) + ".out")
 
 		md5 := md5.New()
 		md5.Write(outputByte)

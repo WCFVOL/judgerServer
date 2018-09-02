@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	work.DoWork()
+	go work.DoWork()
 	httpserver.Run("", "8080")
 }

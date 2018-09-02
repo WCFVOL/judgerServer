@@ -3,6 +3,7 @@ package httpserver
 import (
 	"awesomeProject/judgerServer/work"
 	"encoding/json"
+	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -18,6 +19,7 @@ func Run(ip, port string) {
 func getTask(c *gin.Context) {
 	value := c.PostForm("task")
 	var task work.Task
+	fmt.Println(value)
 	err := json.Unmarshal([]byte(value), &task)
 	if err != nil {
 		log.Println(err.Error())
