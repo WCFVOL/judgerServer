@@ -30,7 +30,8 @@ var (
 	ERROR_SPJ_ERROR           = -11
 )
 
-func Judger(maxCpuTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize, maxStack, gid, uid, memoryLimitCheckOnly int,
+//Judger judge user code
+func Judger(maxCPUTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize, maxStack, gid, uid, memoryLimitCheckOnly int,
 	exePath, inputPath, outputPath, errorPath, logPath, seccompRuleName string,
 	args, env []string) []byte {
 	tmp := "--args="
@@ -41,7 +42,7 @@ func Judger(maxCpuTime, maxRealTime, maxMemory, maxProcessNumber, maxOutputSize,
 	for _, v := range args {
 		strenv += v + " "
 	}
-	proc := exec.Command("/root/Judger/output/libjudger.so", "--max_cpu_time="+strconv.Itoa(maxCpuTime),
+	proc := exec.Command("/root/Judger/output/libjudger.so", "--max_cpu_time="+strconv.Itoa(maxCPUTime),
 		"--max_real_time="+strconv.Itoa(maxRealTime),
 		"--max_memory="+strconv.Itoa(maxMemory),
 		"--max_stack="+strconv.Itoa(maxStack),

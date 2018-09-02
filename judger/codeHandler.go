@@ -9,6 +9,7 @@ import (
 	"strconv"
 )
 
+//Submission message for submission
 type Submission struct {
 	Id        int
 	Code      string
@@ -21,6 +22,7 @@ type Submission struct {
 	MemLimit  int
 }
 
+//Handler handle task
 func Handler(str string) {
 	var submission Submission
 	err := json.Unmarshal([]byte(str), &submission)

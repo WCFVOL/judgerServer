@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+//Compiler compiler code
 func Compiler(submission Submission) string {
 	proc := exec.Command("g++", "/root/user_code/"+strconv.Itoa(submission.Id)+".cpp", "-o", "/root/user_code/"+strconv.Itoa(submission.Id), "-O2")
 	var out bytes.Buffer
